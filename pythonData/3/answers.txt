@@ -1,0 +1,104 @@
+1.
+a) Call this protocol Simple Transport Protocol (STP). At the sender side, STP accepts
+from the sending process a chunk of data not exceeding 1196 bytes, a destination host
+address, and a destination port number. STP adds a four-byte header to each chunk
+and puts the port number of the destination process in this header. STP then gives the
+destination host address and the resulting segment to the network layer. The network
+layer delivers the segment to STP at the destination host. STP then examines the port
+number in the segment, extracts the data from the segment, and passes the data to the
+process identified by the port number.
+b) The segment now has two header fields: a source port field and destination port field.
+At the sender side, STP accepts a chunk of data not exceeding 1192 bytes, a
+destination host address, a source port number, and a destination port number. STP
+creates a segment which contains the application data, source port number, and
+destination port number. It then gives the segment and the destination host address to
+the network layer. After receiving the segment, STP at the receiving host gives the
+application process the application data and the source port number.
+c) No, the transport layer does not have to do anything in the core; the transport layer
+“lives” in the end systems.
+
+2. a. For sending a letter, the family member is required to give the delegate the letter itself,
+the address of the destination house, and the name of the recipient. The delegate
+clearly writes the recipient’s name on the top of the letter. The delegate then puts the
+letter in an envelope and writes the address of the destination house on the envelope.
+The delegate then gives the letter to the planet’s mail service. At the receiving side,
+the delegate receives the letter from the mail service, takes the letter out of the
+envelope, and takes note of the recipient name written at the top of the letter. The
+delegate then gives the letter to the family member with this name.<br>
+b. No, the mail service does not have to open the envelope; it only examines the address
+on the envelope.
+
+3. Source port number y and destination port number x.
+
+4. An application developer may not want its application to use TCP’s congestion
+control, which can throttle the application’s sending rate at times of congestion. Often,
+designers of IP telephony and IP videoconference applications choose to run their
+applications over UDP because they want to avoid TCP’s congestion control. Also,
+some applications do not need the reliable data transfer provided by TCP.
+
+5. Since most firewalls are configured to block UDP traffic, using TCP for video and
+voice traffic lets the traffic though the firewalls.
+
+6. Yes. The application developer can put reliable data transfer into the application layer
+protocol. This would require a significant amount of work and debugging, however.
+
+7. Yes, both segments will be directed to the same socket. For each received segment, at
+the socket interface, the operating system will provide the process with the IP
+addresses to determine the origins of the individual segments.
+
+8. For each persistent connection, the Web server creates a separate “connection socket”.
+Each connection socket is identified with a four-tuple: (source IP address, source port
+number, destination IP address, destination port number). When host C receives and
+IP datagram, it examines these four fields in the datagram/segment to determine to
+which socket it should pass the payload of the TCP segment. Thus, the requests from
+A and B pass through different sockets. The identifier for both of these sockets has 80
+for the destination port; however, the identifiers for these sockets have different
+values for source IP addresses. Unlike UDP, when the transport layer passes a TCP
+segment’s payload to the application process, it does not specify the source IP address,
+as this is implicitly specified by the socket identifier.
+
+9. Sequence numbers are required for a receiver to find out whether an arriving packet
+contains new data or is a retransmission.
+
+10. To handle losses in the channel. If the ACK for a transmitted packet is not received
+within the duration of the timer for the packet, the packet (or its ACK or NACK) is
+assumed to have been lost. Hence, the packet is retransmitted.
+
+11. A timer would still be necessary in the protocol rdt 3.0. If the round trip time is
+known then the only advantage will be that, the sender knows for sure that either the
+packet or the ACK (or NACK) for the packet has been lost, as compared to the real
+scenario, where the ACK (or NACK) might still be on the way to the sender, after the
+timer expires. However, to detect the loss, for each packet, a timer of constant
+duration will still be necessary at the sender.
+
+12.
+a) The packet loss caused a time out after which all the five packets were retransmitted.
+b) Loss of an ACK didn’t trigger any retransmission as Go-Back-N uses cumulative
+acknowledgements.
+c) The sender was unable to send sixth packet as the send window size is fixed to 5.
+
+13.
+a) When the packet was lost, the received four packets were buffered the receiver. After
+the timeout, sender retransmitted the lost packet and receiver delivered the buffered
+packets to application in correct order.
+b) Duplicate ACK was sent by the receiver for the lost ACK.
+c) The sender was unable to send sixth packet as the send window size is fixed to 5
+When a packet was lost, GO-Back-N retransmitted all the packets whereas Selective
+Repeat retransmitted the lost packet only. In case of lost acknowledgement, selective
+repeat sent a duplicate ACK and as GO-Back-N used cumulative acknowledgment, so
+that duplicate ACK was unnecessary.
+
+14. a) false b) false
+c) true d) false e) true f) false g) false
+
+15. a) 20 bytes b) ack number = 90
+
+16. 3 segments. First segment: seq = 43, ack =80; Second segment: seq = 80, ack = 44;
+Third segment; seq = 44, ack = 81
+
+17. R/2
+
+18. False, it is set to half of the current value of the congestion window.
+
+19. Let X = RTT FE , Y = RTT BE and ST = Search time. Consider the following timing
+diagram.

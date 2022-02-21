@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Network Quiz</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="quiz__container">
+        <p class="quiz__score"></p>
+        <p class="quiz__section"></p>
+        <h2 class="quiz__number"></h2>
+        <p class="quiz__question">Question Text</p>
+        <textarea cols="80" rows="7" class="quiz__textarea"></textarea>
+        <button class="quiz__view_answer">View Answer</button>
+        <div class="quiz__answer">this is answer</div>
+        <!-- <button class="hidden" id="reset"></button> -->
+      </div>
+      <div class="buttons__container">
+        <button class="button__wrong" id="button__wrong">Wrong</button>
+        <button class="button__correct" id="button__correct">Correct</button>
+      </div>
+    </div>
+    <div class="container finished hidden">
+      <div class="finished__body"></div>
+      <button class="reset__button only__wrong">Reset Wrong Questions</button
+      ><br />
+      <button class="reset__button all">Reset All</button><br />
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

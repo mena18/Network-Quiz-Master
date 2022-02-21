@@ -1,0 +1,269 @@
+const CHAPTER4 = [
+  {
+    question:
+      "R1. Let's review some of the terminology used in this textbook. Recall that the name of a transport-layer packet is segment and that the name of a link-layer packet is frame. What is the name of a network-layer packet? Recall that both routers and link-layer switches are called packet switches. What is the fundamental difference between a router and link-layer switch?",
+    answer:
+      "1. A network-layer packet is a datagram.<br> A router forwards a packet based on the packet's IP (layer 3)address. <br> A link-layer switch forwards a packet based on the packet's MAC (layer 2) address.",
+    section: "4.1",
+  },
+  {
+    question:
+      "R2. We noted that network layer functionality can be broadly divided into data plane functionality and control plane functionality. What are the main functions of the data plane? Of the control plane?",
+    answer:
+      "2. The main function of the data plane is packet forwarding, which is to forward datagrams from their input links to their output links. For example, the data plane's input ports perform physical layer function of terminating an incoming physical link at a router, perform link-layer function to interoperate with the link layer at the other side of the incoming link, and perform lookup function at the input ports. The main function of the control plane is routing, which is to determine the paths a packet takes from its source to its destination. A control plane is responsible for executing routing protocols, responding to attached links that go up or down, communicating with remote controllers, and performing management functions.",
+    section: "4.1",
+  },
+  {
+    question:
+      "R3. We made a distinction between the forwarding function and the routing function performed in the network layer. What are the key differences between routing and forwarding?",
+    answer:
+      "3. The key differences between routing and forwarding is that forwarding is a router's local action of transferring packets from its input interfaces to its output interfaces, and forwarding takes place at very short timescales (typically a few nanoseconds), and thus is typically implemented in hardware. Routing refers to the network-wide process that determines the end-to-end paths that packets take from sources to destinations. Routing takes place on much longer timescales (typically seconds), and is often implemented in software.",
+    section: "4.1",
+  },
+  {
+    question: "R4. What is the role of the forwarding table within a router?",
+    answer:
+      "4. The role of the forwarding table within a router is to hold entries to determine the outgoing link interface to which an arriving packet will be forwarded via switching fabric.",
+    section: "4.1",
+  },
+  {
+    question:
+      "R5. We said that a network layer's service model 'defines the characteristics of end-to-end transport of packets between sending and receiving hosts.' What is the service model of the Internet's network layer? What guarantees are made by the Internet's service model regarding the host-to-host delivery of datagrams?",
+    answer:
+      "5. The service model of the Internet's network layer is best-effort service. With this service model, there is no guarantee that packets will be received in the order in which they were sent, no guarantee of their eventual delivery, no guarantee on the end-to-end delay, and no minimal bandwidth guarantee.",
+    section: "4.1",
+  },
+  {
+    question:
+      "R6. In Section 4.2, we saw that a router typically consists of input ports, output ports, a switching fabric and a routing processor. Which of these are implemented in hardware and which are implemented in software? Why? Return- ing to the notion of the network layer's data plane and control plane, which are implemented in hardware and which are implemented in software? Why?",
+    answer:
+      "6. Input port, switching fabric, and output ports are implemented in hardware, because their datagram-processing functionality is far too fast for software implementation. A routing processor inside a traditional router uses software for executing routing protocols, maintaining routing tables and attached link state information, and computing the forwarding table of a router. In addition, a routing processor in a SDN router also relies on software for communication with a remote controller in order to receive forwarding table entries and install them in the router's input ports. Data plane is usually implemented in hardware due to the requirement of fast processing, e.g., at nanosecond time scale. Control plane is usually implemented in software and operates at the millisecond or second timescale, for example, forexecuting routing protocols, responding to attached links that go up or down, communicating with remote controllers, and performing management functions.",
+    section: "4.2",
+  },
+  {
+    question:
+      "R7. What does each input port of a high speed router store to facilitate fast forwarding decisions?",
+    answer:
+      "7. With the shadow copy, the forwarding lookup is made locally, at each input port, without invoking the centralized routing processor. Such a decentralized approach avoids creating a lookup processing bottleneck at a single point within the router.",
+    section: "4.2",
+  },
+  {
+    question:
+      "R8. What is meant by destination-based forwarding? How does this differ from generalized forwarding (assuming you've read Section 4.4, which of the two approaches are adopted by Software-Defined Networking)?",
+    answer:
+      "8. Destination-based forwarding means that a datagram arriving at a router will be forwarded to an output interface based on only the final destination of the datagram. Generalized-forwarding means that besides its final destination, other factors associated with a datagram is also considered when a router determines the output interface for the datagram. Software defined networking adopts generalized forwarding, for example, forwarding decision can be based on a datagram's TCP/UDP source or destination port numbers, besides its destination IP address.",
+    section: "4.2",
+  },
+  {
+    question:
+      "R9. Suppose that an arriving packet matches two or more entries in a router's forwarding table. With traditional destination-based forwarding, what rule does a router apply to determine which of these rules should be applied to determine the output port to which the arriving packet should be switched?",
+    answer:
+      "9. A router uses longest prefix matching to determine which link interface a packet will be forwarded to if the packet's destination address matches two or more entries in the forwarding table. That is, the packet will be forwarded to the link interface that has the longest prefix match with the packet's destination.",
+    section: "4.2",
+  },
+  {
+    question:
+      "R10. Switching in a router forwards data from an input port to an output port. What is the advantage of switching via an interconnection network over switching via memory and switching via bus?",
+    answer:
+      "10. Switching via memory; switching via a bus; switching via an interconnection network. An interconnection network can forward packets in parallel as long as all the packets are being forwarded to different output ports.",
+    section: "4.2",
+  },
+  // {
+  //   question:
+  //     "R11. What is the role of a packet scheduler at the output port of a router?",
+  //   answer:
+  //     "11. If the rate at which packets arrive to the fabric exceeds switching fabric rate, then packets will need to queue at the input ports. If this rate mismatch persists, the queues will get larger and larger and eventually overflow the input port buffers, causing packet loss. Packet loss can be eliminated if the switching fabric speed is at least n times as fast as the input line speed, where n is the number of input ports.",
+  //   section: "4.2",
+  // },
+  {
+    question:
+      "R11. What is the role of a packet scheduler at the output port of a router?",
+    answer:
+      "Transmits packets out of output port through First-Come-First-Served (FCFS) or weighted fair queing (WFQ) or any other mechanism",
+    section: "4.2",
+  },
+  // {
+  //   question:
+  //     "R12. What is a drop-tail policy? What are AQM algorithms? Which is the most widely studied and implemented AQM algorithm? How does it work?",
+  //   answer:
+  //     "12. Assuming input and output line speeds are the same, packet loss can still occur if the rate at which packets arrive to a single output port exceeds the line speed. If this rate mismatch persists, the queues will get larger and larger and eventually overflow the output port buffers, causing packet loss. Note that increasing switch fabric speed cannot prevent this problem from occurring.",
+  //   section: "4.2",
+  // },
+  {
+    question: "R12. What is a drop-tail policy?",
+    answer:
+      "12. Drop tail policy: It is a very simple queue management algorithm used by Internet routers, e.g. in the network schedulers, and network switches to decide when to drop packets. In contrast to the more complex algorithms like RED and WRED, in Tail Drop the traffic is not differentiated",
+    section: "4.2",
+  },
+  {
+    question:
+      "R13. What is HOL blocking? Does it occur in input ports or output ports?",
+    answer:
+      "13. HOL blocking: Sometimes a packet that is first in line at an input port queue must wait because there is no available buffer space at the output port to which it wants to be forwarded. When this occurs, all the packets behind the first packet are blocked, even if their output queues have room to accommodate them. HOL blocking occurs at the input port.",
+    section: "4.2",
+  },
+  {
+    question:
+      "R14. In Section 4.2, we studied FIFO, Priority, Round Robin (RR), and Weighted Fair Queueing (WFQ) packet scheduling disciplines, Which of these queueing disciplines ensure that all packets depart in the order in which they arrived?",
+    answer:
+      "14.  Only FIFO can ensure that all packets depart in the order in which they arrived.",
+    section: "4.2",
+  },
+  {
+    question:
+      "R15. Give an example showing why a network operator might want one class of packets to be given priority over another class of packets.",
+    answer:
+      "15. For example, a packet carrying network management information should receive priority over regular user traffic. Another example, a real-time voice-over-IP packet might need to receive priority over non-real-time traffic such as e-email.",
+    section: "4.2",
+  },
+  {
+    question:
+      "R16. What is an essential different between RR and WFQ packet scheduling? Is there a case (Hint: Consider the WFQ weights) where RR and WFQ will behave exactly the same",
+    answer:
+      "16. With RR, all service classes are treated equally, i.e., no service class has priority over any other service class. With WFQ, service classes are treated differently, i.e., each class may receive a differential amount of service in any interval of time. When a WFQ's all classes have the same amount of service weight, the WFQ is identical to RR.",
+    section: "4.2",
+  },
+  {
+    question:
+      "R17. Suppose Host A sends Host B a TCP segment encapsulated in an IP datagram. When Host B receives the datagram, how does the network layer in Host B know it should pass the segment (that is, the payload of the datagram) to TCP rather than to UDP or to some other upper-layer protocol?",
+    answer:
+      "17. The 8-bit protocol field in the IP datagram contains information about which transport layer protocol the destination host should pass the segment to.",
+    section: "4.3",
+  },
+  {
+    question:
+      "R18. What field in the IP header can be used to ensure that a packet is forwarded through no more than N routers?",
+    answer: "18. Time-to-live.",
+    section: "4.3",
+  },
+  {
+    question:
+      "R19. Recall that we saw the Internet checksum being used in both transport-layer segment (in UDP and TCP headers, Figures 3.7 and 3.29 respectively) and in network-layer datagrams (IP header, Figure 4.16). Now consider a transport layer segment encapsulated in an IP datagram. Are the checksums in the segment header and datagram header computed over any common bytes in the IP datagram? Explain your answer.",
+    answer:
+      "19. No. IP header checksum only computes the checksum of an IP packet's IP header fields, which share no common bytes with the IP datagram's transport-layer segment part.",
+    section: "4.3",
+  },
+  {
+    question:
+      "R20. When a large datagram is fragmented into multiple smaller datagrams, where are these smaller datagrams reassembled into a single larger datagram?",
+    answer:
+      "20. The reassembly of the fragments of an IP datagram is done in the datagram's destination host.",
+    section: "4.3",
+  },
+  {
+    question:
+      "R21. A router has eight interfaces. How many IP addresses will it have?",
+    answer: "21. They have one address for each interface.",
+    section: "4.3",
+  },
+  {
+    question:
+      "R22. What is the 32-bit binary equivalent of the IP address 202.3.14.25?",
+    answer: "22. 11001010 00000011 00001110 00011001 .",
+    section: "4.3",
+  },
+  {
+    question:
+      "R23. Visit a host that uses DHCP to obtain its IP address, network mask, default router, and IP address of its local DNS server. List these values.",
+    answer: `23. the values are not fixed so the question doesn't make scence so i mentioned the process itself <br>
+      The host broadcase (send request at 255.255.255.255 ) to discover the DHCP server <br>
+      the DHCP server responds with DHCP offer (a message containing)
+      <ul>
+        <li> Src address : the DHCP server ip address and DHCP port number  </li> 
+        <li> dest address : 255.255.255.255 (because the host doesn't have ip yet) & host port number </li> 
+        <li>  the ip address suggested for the host  </li>
+        <li>  the network mask </li> 
+        <li>  since you know the mask you can get the router ip <br>
+         ex. mask 255.255.255.0/24 then the ip address of the router is the first address 255.255.255.1   </li> 
+         <li>  the local DNS server ip </li> 
+      </ul>
+      `,
+    section: "4.3",
+  },
+  {
+    question:
+      "R24. Suppose there are four routers between a source host and a destination host. Ignoring fragmentation, an IP datagram sent from the source host to the destination host will travel over how many interfaces? How many forwarding tables will be indexed to move the datagram from the source to the destination?",
+    answer: `24. 10 interfaces; 4 forwarding tables.<br>
+    sender interface + 4*(input and output interfac for each router) + receiver interface <br>
+    each router will have forwarding table 
+    `,
+    section: "4.3",
+  },
+  {
+    question:
+      "R25. Suppose an application generates chunks of 40 bytes of data every 20 msec, and each chunk gets encapsulated in a TCP segment and then an IP datagram. What percentage of each datagram will be overhead, and what percentage will be application data?",
+    answer:
+      "25. TCP is 20 bytes and the ip is 20 bytes total packet size is 80 bytes and the payload is only 40 of these 80 (50% overhead)",
+    section: "4.3",
+  },
+  {
+    question:
+      "R26. Suppose you purchase a wireless router and connect it to your cable modem. Also suppose that your ISP dynamically assigns your connected device (that is, your wireless router) one IP address. Also suppose that you have five PCs at home that use 802.11 to wirelessly connect to your wireless router. How are IP addresses assigned to the five PCs? Does the wireless router use NAT? Why or why not?",
+    answer:
+      "26. Typically the wireless router includes a DHCP server. DHCP is used to assign IP addresses to the 5 PCs and to the router interface. Yes, the wireless router also uses NAT as it obtains only one IP address from the ISP.",
+    section: "4.3",
+  },
+  {
+    question:
+      "R27. What is meant by the term 'route aggregation'? Why is it useful for a router to perform route aggregation?",
+    answer:
+      "27. Route aggregation means that an ISP uses a single prefix to advertise multiple networks. Route aggregation is useful because an ISP can use this technique to advertise to the rest of the Internet a single prefix address for the multiple networks that the ISP has.",
+    section: "4.3",
+  },
+  {
+    question: "R28. What is meant by a 'plug-and-play' or 'zeroconf' protocol?",
+    answer:
+      "28. A plug-and-play or zeroconf protocol means that the protocol is able to automatically configure a host's network-related aspects in order to connect the host into a network.",
+    section: "4.3",
+  },
+  {
+    question:
+      "R29. What is a private network address? Should a datagram with a private network address ever be present in the larger public Internet? Explain.",
+    answer:
+      "29. A private network address of a device in a network refers to a network address that is only meaningful to those devices within that network. A datagram with a private network address should never be present in the larger public Internet, because the private network address is potentially used by many network devices within their own private networks.",
+    section: "4.3",
+  },
+  {
+    question:
+      "R30. Compare and contrast the IPv4 and the IPv6 header fields. Do they have any fields in common?",
+    answer:
+      "30. IPv6 has a fixed length header, which does not include most of the options an IPv4 header can include. Even though the IPv6 header contains two 128 bit addresses (source and destination IP address) the whole header has a fixed length of 40 bytes only. Several of the fields are similar in spirit. Traffic class, payload length, next header and hop limit in IPv6 are respectively similar to type of service, datagram length, upper-layer protocol and time to live in IPv4.",
+    section: "4.3",
+  },
+  {
+    question:
+      "R31. It has been said that when IPv6 tunnels through IPv4 routers, IPv6 treats the IPv4 tunnels as link-layer protocols. Do you agree with this statement? Why or why not?",
+    answer:
+      "31. Yes, because the entire IPv6 datagram (including header fields) is encapsulated in an IPv4 datagram.",
+    section: "4.3",
+  },
+  {
+    question:
+      "R32. How does generalized forwarding differ from destination-based forwarding?",
+    answer:
+      "32. Forwarding has two main operations: match and action. With destination-based forwarding, the match operation of a router looks up only the destination IP address of the to-be-forwarded datagram, and the action operation of the router involves sending the packet into the switching fabric to a specified output port. With generalized forwarding, the match can be made over multiple header fields associated with different protocols at different layers in the protocol stack, and the action can include forwarding the packet to one or more output ports, load-balancing packets across multiple outgoing interfaces, rewriting header values (as in NAT), purposefully blocking/dropping a packet (as in a firewall), sending a packet to a special server for further processing and action, and more.",
+    section: "4.4",
+  },
+  {
+    question:
+      "R33. What is the difference between a forwarding table that we encountered in destination-based forwarding in Section 4.1 and OpenFlow's flow table that we encountered in Section 4.4?",
+    answer:
+      "33. Each entry in the forwarding table of a destination-based forwarding contains only an IP header field value and the outgoing link interface to which a packet (that matches the IP header field value) is to be forwarded. Each entry of the flow table in OpenFlow includes a set of header field values to which an incoming packet will be matched, a set of counters that are updated as packets are matched to flow table entries, and a set of actions to be taken when a packet matches a flow table entry.",
+    section: "4.4",
+  },
+  {
+    question:
+      "R34. What is meant by the 'match plus action' operation of a router or switch? In the case of destination-based forwarding packet switch, what is matched and what is the action taken? In the case of an SDN, name three fields that can be matched, and three actions that can be taken.",
+    answer:
+      "34. 'Match plus action' means that a router or a switch tries to find a match between some of the header values of a packet with some entry in a flow table, and then based on that match, the router decides to which interface(s) the packet will be forwarded and even some more operations on the packet. In the case of destination-based forwarding packet switch, a router only tries to find a match between a flow table entry with the destination IP address of an arriving packet, and the action is to decide to which interface(s) the packet will be forwarded. In the case of an SDN, there are many fields can be matched, for example, IP source address, TCP source port, and source MAC address; there are also many actions can be taken, for example, forwarding, dropping, and modifying a field value.",
+    section: "4.4",
+  },
+  {
+    question:
+      "R35. Name three header fields in an IP datagram that can be 'matched' in OpenFlow 1.0  generalized forwarding. What are three IP datagram header fields that cannot be 'matched' in OpenFlow?",
+    answer:
+      "35. Three example header fields in an IP datagram that can be matched in OpenFlow 1.0 generalized forwarding are IP source address, TCP source port, and source MAC address. Three fields that cannot be matched are: TTL field, datagram length field, header checksum (which depends on TTL field).",
+    section: "4.4",
+  },
+];
+export default CHAPTER4;

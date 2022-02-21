@@ -1,0 +1,101 @@
+R1. List five nonproprietary Internet applications and the application-layer proto-
+cols that they use.
+
+R2. What is the difference between network architecture and application architecture?
+
+R3. For a communication session between a pair of processes, which process is
+the client and which is the server?
+
+R4. Why are the terms client and server still used in peer-to-peer applications?
+
+R5. What information is used by a process running on one host to identify a pro-
+cess running on another host?
+
+R6. What is the role of HTTP in a network application? What other components
+are needed to complete a Web application?
+
+R7. Referring to Figure 2.4, we see that none of the applications listed in Figure
+2.4 requires both no data loss and timing. Can you conceive of an application
+that requires no data loss and that is also highly time-sensitive?
+
+R8. List the four broad classes of services that a transport protocol can provide.
+For each of the service classes, indicate if either UDP or TCP (or both) pro-
+vides such a service.
+
+R9. Recall that TCP can be enhanced with SSL to provide process-to-process
+security services, including encryption. Does SSL operate at the transport
+layer or the application layer? If the application developer wants TCP to be
+enhanced with SSL, what does the developer have to do?
+
+====================
+
+R10. What is meant by a handshaking protocol?
+
+R11. What does a stateless protocol mean? Is IMAP stateless? What about SMTP?
+
+R12. How can websites keep track of users? Do they always need to use cookies?
+
+R13. Describe how Web caching can reduce the delay in receiving a requested
+object. Will Web caching reduce the delay for all objects requested by a user
+or for only some of the objects? Why?
+
+R15. Are there any constraints on the format of the HTTP body? What about the
+email message body sent with SMTP? How can arbitrary data be transmitted
+over SMTP?
+
+R16. Suppose Alice, with a Web-based e-mail account (such as Hotmail or Gmail),
+sends a message to Bob, who accesses his mail from his mail server using
+POP3. Discuss how the message gets from Alice’s host to Bob’s host. Be
+sure to list the series of application-layer protocols that are used to move the
+message between the two hosts.
+
+R18. Assume you have multiple devices, and you connect to your email provider
+using POP3. You retrieve messages with the “download and keep” strategy
+from multiple devices. Can your email client tell if you have already read the
+message in this scenario?
+
+R19. Why are MX records needed? Would it not be enough to use a CNAME
+record? (Assume the email client looks up email addresses through a Type
+A query and that the target host only runs an email server.)
+
+R20. What is the difference between recursive and iterative DNS queries?
+
+
+====================
+
+
+R21. Under what circumstances is file downloading through P2P much faster
+than through a centralized client-server approach? Justify your answer using
+Equation 2.2.
+
+R22. Consider a new peer Alice that joins BitTorrent without possessing any chunks.
+Without any chunks, she cannot become a top-four uploader for any of the other
+peers, since she has nothing to upload. How then will Alice get her first chunk?
+
+R23. Assume a BitTorrent tracker suddenly becomes unavailable. What are its
+consequences? Can files still be downloaded?
+
+====================
+
+
+
+R24. CDNs typically adopt one of two different server placement philosophies.
+Name and briefly describe them.
+
+R25. Besides network-related considerations such as delay, loss, and bandwidth
+performance, there are other important factors that go into designing a CDN
+server selection strategy. What are they?
+
+
+====================
+
+R26. In Section 2.7, the UDP server described needed only one socket, whereas
+the TCP server needed two sockets. Why? If the TCP server were to support
+n simultaneous connections, each from a different client host, how many
+sockets would the TCP server need?
+
+
+R27. For the client-server application over TCP described in Section 2.7, why
+must the server program be executed before the client program? For the
+client-server application over UDP, why may the client program be executed
+before the server program?

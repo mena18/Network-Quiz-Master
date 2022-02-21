@@ -1,0 +1,130 @@
+1. The Web: HTTP; file transfer: FTP; remote login: Telnet; e-mail: SMTP; BitTorrent
+file sharing: BitTorrent protocol
+
+2. Network architecture refers to the organization of the communication process into
+layers (e.g., the five-layer Internet architecture). Application architecture, on the other
+hand, is designed by an application developer and dictates the broad structure of the
+application (e.g., client-server or P2P).
+
+3. The process which initiates the communication is the client; the process that waits to
+be contacted is the server.
+
+4. No. In a P2P file-sharing application, the peer that is receiving a file is typically the
+client and the peer that is sending the file is typically the server.
+
+5. The IP address of the destination host and the port number of the socket in the
+destination process.
+
+6. You would use UDP. With UDP, the transaction can be completed in one roundtrip
+time (RTT) - the client sends the transaction request into a UDP socket, and the server
+sends the reply back to the client's UDP socket. With TCP, a minimum of two RTTs
+are needed - one to set-up the TCP connection, and another for the client to send the
+request, and for the server to send back the reply.
+
+7. One such example is remote word processing, for example, with Google docs.
+However, because Google docs runs over the Internet (using TCP), timing guarantees
+are not provided.
+
+8. a) Reliable data transfer
+TCP provides a reliable byte-stream between client and server but UDP does not.
+b) A guarantee that a certain value for throughput will be maintained
+Neither
+c) A guarantee that data will be delivered within a specified amount of time
+Neither
+d) Confidentiality (via encryption)
+Neither
+
+9. SSL operates at the application layer. The SSL socket takes unencrypted data from
+the application layer, encrypts it and then passes it to the TCP socket. If the
+application developer wants TCP to be enhanced with SSL, she has to include the
+SSL code in the application.
+
+10. A protocol uses handshaking if the two communicating entities first exchange control
+packets before sending data to each other. SMTP uses handshaking at the application
+layer whereas HTTP does not.
+
+11. The applications associated with those protocols require that all application data be
+received in the correct order and without gaps. TCP provides this service whereas
+UDP does not.
+
+12. When the user first visits the site, the server creates a unique identification number,
+creates an entry in its back-end database, and returns this identification number as a
+cookie number. This cookie number is stored on the user’s host and is managed by
+the browser. During each subsequent visit (and purchase), the browser sends the
+cookie number back to the site. Thus the site knows when this user (more precisely,
+this browser) is visiting the site.
+
+13. Web caching can bring the desired content “closer” to the user, possibly to the same
+LAN to which the user’s host is connected. Web caching can reduce the delay for all
+objects, even objects that are not cached, since caching reduces the traffic on links.
+
+15. A list of several popular messaging apps: WhatsApp, Facebook Messenger, WeChat,
+and Snapchat. These apps use the different protocols than SMS.
+
+16. The message is first sent from Alice’s host to her mail server over HTTP. Alice’s
+mail server then sends the message to Bob’s mail server over SMTP. Bob then
+transfers the message from his mail server to his host over POP3.
+
+
+18. With download and delete, after a user retrieves its messages from a POP server, the
+messages are deleted. This poses a problem for the nomadic user, who may want to
+access the messages from many different machines (office PC, home PC, etc.). In the
+download and keep configuration, messages are not deleted after the user retrieves the
+messages. This can also be inconvenient, as each time the user retrieves the stored
+messages from a new machine, all of non-deleted messages will be transferred to the
+new machine (including very old messages).
+
+19. Yes an organization’s mail server and Web server can have the same alias for a host
+name. The MX record is used to map the mail server’s host name to its IP address.
+
+20. You should be able to see the sender's IP address for a user with an .edu email
+address. But you will not be able to see the sender's IP address if the user uses a gmail
+account.
+
+21. It is not necessary that Bob will also provide chunks to Alice. Alice has to be in the
+top 4 neighbors of Bob for Bob to send out chunks to her; this might not occur even if
+Alice provides chunks to Bob throughout a 30-second interval.
+
+22. Recall that in BitTorrent, a peer picks a random peer and optimistically unchokes the
+peer for a short period of time. Therefore, Alice will eventually be optimistically
+unchoked by one of her neighbors, during which time she will receive chunks from
+that neighbor.
+
+23. The overlay network in a P2P file sharing system consists of the nodes participating
+in the file sharing system and the logical links between the nodes. There is a logical
+link (an “edge” in graph theory terms) from node A to node B if there is a semi-
+permanent TCP connection between A and B. An overlay network does not include
+routers.
+
+24. One server placement philosophy is called Enter Deep, which enter deep into the
+access networks of Internet Service Providers, by deploying server clusters in access
+ISPs all over the world. The goal is to reduce delays and increase throughput
+between end users and the CDN servers. Another philosophy is Bring Home, which
+bring the ISPs home by building large CDN server clusters at a smaller number of
+sites and typically placing these server clusters in IXPs (Internet Exchange Points).
+This Bring Home design typically results in lower maintenance and management cost,
+compared with the enter-deep design philosophy.
+
+25. Other than network-related factors, there are some important factors to consider, such
+as load-balancing (clients should not be directed to overload clusters), diurnal effects,
+variations across DNS servers within a network, limited availability of rarely
+accessed video, and the need to alleviate hot-spots that may arise due to popular video
+content.
+Reference paper:
+Torres, Ruben, et al. "Dissecting video server selection strategies in the YouTube
+CDN." The 31st IEEE International Conference on. Distributed Computing Systems
+(ICDCS), 2011.
+Another factor to consider is ISP delivery cost – the clusters may be chosen so that
+specific ISPs are used to carry CDN-to-client traffic, taking into account the different
+cost structures in the contractual relationships between ISPs and cluster operators.
+
+26. With the UDP server, there is no welcoming socket, and all data from different clients
+enters the server through this one socket. With the TCP server, there is a welcoming
+socket, and each time a client initiates a connection to the server, a new socket is
+created. Thus, to support n simultaneous connections, the server would need n+1
+sockets.
+
+27. For the TCP application, as soon as the client is executed, it attempts to initiate a TCP
+connection with the server. If the TCP server is not running, then the client will fail to
+make a connection. For the UDP application, the client does not initiate connections
+(or attempt to communicate with the UDP server) immediately upon execution

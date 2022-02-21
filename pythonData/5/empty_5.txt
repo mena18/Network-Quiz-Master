@@ -1,0 +1,75 @@
+
+R1. What is meant by a control plane that is based on per-router control? In such
+cases, when we say the network control and data planes are implemented
+'monolithically,' what do we mean?
+
+R2. What is meant by a control plane that is based on logically centralized
+control? In such cases, are the data plane and the control plane implemented
+within the same device or in separate devices? Explain.
+
+====================
+
+R3. Compare and contrast the properties of a centralized and a distributed routing
+algorithm. Give an example of a routing protocol that takes a centralized and
+a decentralized approach.
+
+R4. Compare and contrast static and dynamic routing algorithms.
+
+R5. What is the 'count to infinity' problem in distance vector routing?
+
+R6. How is a least cost path calculated in a decentralized routing algorithm?
+SECTIONS 5.3–5.4
+
+R7. Why are different inter-AS and intra-AS protocols used in the Internet?
+
+R8. True or false: When an OSPF route sends its link state information, it is sent
+only to those nodes directly attached neighbors. Explain.
+
+R9. What is meant by an area in an OSPF autonomous system? Why was the
+concept of an area introduced?
+
+R10. Define and contrast the following terms: subnet, prefix, and BGP route.
+
+R11. How does BGP use the NEXT-HOP attribute? How does it use the AS-PATH
+attribute?
+
+R12. Describe how a network administrator of an upper-tier ISP can implement
+policy when configuring BGP.
+
+R13. True or false: When a BGP router receives an advertised path from its neighbor,
+it must add its own identity to the received path and then send that new
+path on to all of its neighbors. Explain.
+====================
+
+R14. Describe the main role of the communication layer, the network-wide state 
+management layer, and the network-control application layer in an SDN
+controller.
+
+R15. Suppose you wanted to implement a new routing protocol in the SDN control
+plane. At which layer would you implement that protocol? Explain.
+
+R16. What types of messages flow across an SDN controller’s northbound and
+southbound APIs? Who is the recipient of these messages sent from the
+controller across the southbound interface, and who sends messages to the
+controller across the northbound interface?
+
+R17. Describe the purpose of two types of OpenFlow messages (of your choosing)
+that are sent from a controlled device to the controller. Describe the purpose
+of two types of Openflow messages (of your choosing) that are send from the
+controller to a controlled device.
+
+R18. What is the purpose of the service abstraction layer in the OpenDaylight SDN
+controller?
+====================
+
+R19. Names four different types of ICMP messages
+
+R20. What two types of ICMP messages are received at the sending host executing
+the Traceroute program?
+
+R21. Define the following terms in the context of SNMP: managing server,
+managed device, network management agent and MIB.
+
+R22. What are the purposes of the SNMP GetRequest and SetRequest messages?
+
+R23. What is the purpose of the SNMP trap message?
