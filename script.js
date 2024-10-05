@@ -5,7 +5,6 @@ import CHAPTER2 from "./Data/Chapter2.js";
 import CHAPTER3 from "./Data/Chapter3.js";
 import CHAPTER4 from "./Data/Chapter4.js";
 import CHAPTER5 from "./Data/Chapter5.js";
-import IMPORTANT from "./Data/Important.js";
 
 class Ui {
   constructor() {
@@ -87,7 +86,7 @@ class Ui {
             <p>${obj.answer}</p>
         </div>`;
     });
-    localStorage.setItem("quiz",JSON.stringify(history.history))
+    localStorage.setItem("quiz", JSON.stringify(history.history));
 
     this.finished_body.innerHTML = `your score is ${score}/${final_score}</div> ${list.join(
       ""
@@ -145,6 +144,8 @@ class QuizHandler {
   constructor(data, ui, shuffle) {
     this.data = data;
     this.ui = ui;
+    this.history = new History();
+    this.current_question = -1;
     this.init();
     if (shuffle) {
       this.shuffleArray();
@@ -215,26 +216,23 @@ class QuizHandler {
 // Constant objects
 // const ChaptersData = [...CHAPTER4, ...CHAPTER4];
 const ChaptersData = [
-  // ...CHAPTER1,
-  // ...CHAPTER2,
-  // ...CHAPTER3,
-  // ...CHAPTER4,
-  // ...CHAPTER5,
-  ...IMPORTANT,
+  ...CHAPTER1,
+  ...CHAPTER2,
+  ...CHAPTER3,
+  ...CHAPTER4,
+  ...CHAPTER5,
 ];
 
 const ui = new Ui();
-const Quiz = new QuizHandler(ChaptersData, ui, false); // data , ui components , shuffle questions
-const storage_items = localStorage.getItem('quiz')
-if(storage_items){
-  const data = JSON.parse(storage_items)
-  if(data.length >0){
+const Quiz = new QuizHandler(ChaptersData, ui, true); // data , ui components , shuffle questions
+const storage_items = localStorage.getItem("quiz");
+if (storage_items) {
+  const data = JSON.parse(storage_items);
+  if (data.length > 0) {
     Quiz.data = data;
-    Quiz.init()  
+    Quiz.init();
   }
-  
 }
-
 
 // first time it will call the first question
 Quiz.next_question();
